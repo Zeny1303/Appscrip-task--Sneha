@@ -6,7 +6,7 @@ I built this Product Listing Page (PLP) using **Next.js (App Router)**, **React*
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 * **Framework**: Next.js 16 (App Router)
 * **Language**: TypeScript
@@ -15,7 +15,7 @@ I built this Product Listing Page (PLP) using **Next.js (App Router)**, **React*
 
 ---
 
-## 🏃 How to Run Locally
+##  How to Run Locally
 
 1. **Clone the repository**:
    ```bash
@@ -40,6 +40,23 @@ I built this Product Listing Page (PLP) using **Next.js (App Router)**, **React*
    npm run start
    ```
 
+##  Application Screenshots
+
+### Desktop View
+
+![Desktop View 1](screenshots/Desktop_1.png)
+
+![Desktop View 2](screenshots/Desktop_2.png)
+
+### Mobile View
+
+<p align="center">
+  <img src="screenshots/mobile_img_1.jpeg" alt="Mobile View 1" width="45%" />
+  &nbsp;
+  <img src="screenshots/mobile_img_2.jpeg" alt="Mobile View 2" width="45%" />
+</p>
+
 ---
 
 *Submitted by **Sneha** for the Appscrip Frontend Assignment.*
+
