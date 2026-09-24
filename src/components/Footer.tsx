@@ -50,7 +50,7 @@ export default function Footer() {
             <div className="currency-block">
               <h2 className="footer-heading">CURRENCY</h2>
               <div className="currency-selector">
-                <span className="currency-flag">🇺🇸</span>
+                <img src="/us-flag.svg" alt="United States flag" className="currency-flag-img" width="18" height="18" />
                 <span className="currency-code">◆ USD</span>
               </div>
               <p className="currency-note desktop-only">
