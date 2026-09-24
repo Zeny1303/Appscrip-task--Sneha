@@ -1,39 +1,59 @@
+"use client";
+
+import { useState } from "react";
+
 export default function Footer() {
+  const [openSections, setOpenSections] = useState<{ [key: string]: boolean }>({
+    mettamuse: false,
+    quicklinks: false,
+    followus: false,
+  });
+
+  const toggleSection = (section: string) => {
+    setOpenSections((prev) => ({
+      ...prev,
+      [section]: !prev[section],
+    }));
+  };
+
   return (
-    <footer className="site-footer">
+    <footer className="site-footer" id="contact">
       <div className="footer-container">
-        {/* Top Newsletter & Contact Bar */}
+        {/* Top Newsletter & Contact/Currency Bar */}
         <div className="footer-top-row">
           <div className="footer-newsletter-col">
             <h2 className="footer-heading">BE THE FIRST TO KNOW</h2>
             <p className="footer-subtext">Sign up for updates from mettä muse.</p>
-            <div className="newsletter-form">
+            <form className="newsletter-form" onSubmit={(e) => e.preventDefault()}>
               <input
                 type="email"
                 placeholder="Enter your e-mail..."
                 aria-label="Enter your email for newsletter updates"
                 className="newsletter-input"
               />
-              <button type="button" className="subscribe-btn" aria-label="Subscribe to newsletter">
+              <button type="submit" className="subscribe-btn">
                 SUBSCRIBE
               </button>
-            </div>
+            </form>
           </div>
 
           <div className="footer-contact-col">
             <div className="contact-block">
-              <h2 className="footer-heading">CONTACT US</h2>
-              <p className="footer-text-link">+44 221 133 5360</p>
-              <p className="footer-text-link">customercare@mettamuse.com</p>
+              <h2 className="footer-heading">CALL US</h2>
+              <div className="contact-info-line">
+                <span>+44 221 133 5360</span>
+                <span className="contact-bullet">◆</span>
+                <span>customercare@mettamuse.com</span>
+              </div>
             </div>
 
             <div className="currency-block">
               <h2 className="footer-heading">CURRENCY</h2>
               <div className="currency-selector">
-                <img src="/us-flag.svg" alt="United States flag" className="currency-flag-img" width="18" height="18" />
+                <span className="currency-flag">🇺🇸</span>
                 <span className="currency-code">◆ USD</span>
               </div>
-              <p className="currency-note">
+              <p className="currency-note desktop-only">
                 Transactions will be completed in Euros and a currency reference is available on hover.
               </p>
             </div>
@@ -42,11 +62,30 @@ export default function Footer() {
 
         <hr className="footer-divider" />
 
-        {/* Middle Navigation Links & Social */}
+        {/* Middle Links & Mobile Accordions */}
         <div className="footer-middle-row">
+          {/* 1. mettä muse */}
           <div className="footer-links-col">
-            <h2 className="footer-heading">mettä muse</h2>
-            <ul className="footer-nav-list">
+            <button
+              type="button"
+              className="footer-accordion-btn"
+              onClick={() => toggleSection("mettamuse")}
+              aria-expanded={openSections.mettamuse}
+            >
+              <h2 className="footer-heading">mettā muse</h2>
+              <svg
+                className={`accordion-chevron ${openSections.mettamuse ? "open" : ""}`}
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path d="M6 9l6 6 6-6" />
+              </svg>
+            </button>
+            <ul className={`footer-nav-list ${openSections.mettamuse ? "open" : ""}`}>
               <li><a href="#about">About Us</a></li>
               <li><a href="#stories">Stories</a></li>
               <li><a href="#artisans">Artisans</a></li>
@@ -56,9 +95,28 @@ export default function Footer() {
             </ul>
           </div>
 
+          {/* 2. QUICK LINKS */}
           <div className="footer-links-col">
-            <h2 className="footer-heading">QUICK LINKS</h2>
-            <ul className="footer-nav-list">
+            <button
+              type="button"
+              className="footer-accordion-btn"
+              onClick={() => toggleSection("quicklinks")}
+              aria-expanded={openSections.quicklinks}
+            >
+              <h2 className="footer-heading">QUICK LINKS</h2>
+              <svg
+                className={`accordion-chevron ${openSections.quicklinks ? "open" : ""}`}
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path d="M6 9l6 6 6-6" />
+              </svg>
+            </button>
+            <ul className={`footer-nav-list ${openSections.quicklinks ? "open" : ""}`}>
               <li><a href="#orders">Orders & Shipping</a></li>
               <li><a href="#seller">Join/Login as a Seller</a></li>
               <li><a href="#payment">Payment & Pricing</a></li>
@@ -69,29 +127,50 @@ export default function Footer() {
             </ul>
           </div>
 
+          {/* 3. FOLLOW US & Payment */}
           <div className="footer-social-col">
             <div className="social-block">
-              <h2 className="footer-heading">FOLLOW US</h2>
-              <div className="social-icons">
-                <a href="#instagram" aria-label="Follow us on Instagram" className="social-icon">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-                  </svg>
-                </a>
-                <a href="#linkedin" aria-label="Follow us on LinkedIn" className="social-icon">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-                    <rect x="2" y="9" width="4" height="12" />
-                    <circle cx="4" cy="4" r="2" />
-                  </svg>
-                </a>
+              <button
+                type="button"
+                className="footer-accordion-btn"
+                onClick={() => toggleSection("followus")}
+                aria-expanded={openSections.followus}
+              >
+                <h2 className="footer-heading">FOLLOW US</h2>
+                <svg
+                  className={`accordion-chevron ${openSections.followus ? "open" : ""}`}
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path d="M6 9l6 6 6-6" />
+                </svg>
+              </button>
+              <div className={`social-icons-wrapper ${openSections.followus ? "open" : ""}`}>
+                <div className="social-icons">
+                  <a href="#instagram" aria-label="Instagram" className="social-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                    </svg>
+                  </a>
+                  <a href="#linkedin" aria-label="LinkedIn" className="social-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                      <rect x="2" y="9" width="4" height="12" />
+                      <circle cx="4" cy="4" r="2" />
+                    </svg>
+                  </a>
+                </div>
               </div>
             </div>
 
             <div className="payment-block">
-              <h2 className="footer-heading">mettä muse ACCEPTS</h2>
+              <h2 className="footer-heading">mettā muse ACCEPTS</h2>
               <div className="payment-badges" aria-label="Accepted payment methods">
                 {/* 1. Google Pay */}
                 <span className="payment-badge-svg" title="Google Pay">
@@ -123,7 +202,7 @@ export default function Footer() {
                   </svg>
                 </span>
 
-                {/* 4. American Express (Amex) */}
+                {/* 4. Amex */}
                 <span className="payment-badge-svg" title="American Express">
                   <svg width="40" height="24" viewBox="0 0 40 24" fill="none">
                     <rect width="40" height="24" rx="3" fill="#006FCF" />
@@ -140,7 +219,7 @@ export default function Footer() {
                   </svg>
                 </span>
 
-                {/* 6. O Pay / Shop Pay */}
+                {/* 6. O Pay */}
                 <span className="payment-badge-svg" title="O Pay">
                   <svg width="40" height="24" viewBox="0 0 40 24" fill="none">
                     <rect width="40" height="24" rx="3" fill="#5A31F4" />
@@ -152,7 +231,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom Copyright Row */}
+        {/* Bottom Copyright */}
         <div className="footer-bottom-row">
           <p className="copyright-text">Copyright &copy; 2023 mettamuse. All rights reserved.</p>
         </div>
